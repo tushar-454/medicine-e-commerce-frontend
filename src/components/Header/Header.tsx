@@ -1,4 +1,8 @@
+'use client';
+import { toggleSidebar } from '@/feature/publicStateSlice/publicStateSlice';
+import { AppDispatch } from '@/store/store';
 import { HiMenuAlt2 } from 'react-icons/hi';
+import { useDispatch } from 'react-redux';
 import Container from '../shared/Container';
 import Carts from './Carts';
 import Location from './Location';
@@ -7,12 +11,16 @@ import Logo from './Logo';
 import SearchMedicing from './SearchMedicing';
 
 const Header = () => {
+  const dispatch = useDispatch<AppDispatch>();
   return (
     <header className='border-b-4 border-surfie-green-600 bg-white py-3'>
       <Container>
         <div className='flex items-center justify-between'>
           <div className='flex items-center justify-between'>
-            <HiMenuAlt2 className='cursor-pointer rounded-lg bg-surfie-green-600 p-2 text-4xl text-white' />
+            <HiMenuAlt2
+              onClick={() => dispatch(toggleSidebar())}
+              className='block cursor-pointer rounded-lg bg-surfie-green-600 p-2 text-4xl text-white lg:hidden'
+            />
             <Logo />
           </div>
           <SearchMedicing />
