@@ -1,3 +1,4 @@
+import categoryReducer from '@/feature/categoriesSlice/categoriesSlice';
 import userReducer from '@/feature/userSlice/userSlice';
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
@@ -15,6 +16,7 @@ import storage from 'redux-persist/lib/storage';
 
 const rootReducer = combineReducers({
   user: userReducer,
+  category: categoryReducer,
 });
 
 const persistConfig = {

@@ -18,7 +18,7 @@ export default function LoginComponent() {
   };
 
   return (
-    <div>
+    <div className='p-5'>
       <button onClick={handleLogin} className='rounded-lg bg-gray-300 p-2'>
         Login
       </button>
