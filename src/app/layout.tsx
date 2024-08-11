@@ -1,9 +1,11 @@
-import Header from '@/components/Header/Header';
+import Header from '@/components/header/Header';
+import Sidebar from '@/components/sidebar/Sidebar';
 import type { Metadata } from 'next';
 import { Outfit } from 'next/font/google';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
+import 'react-toastify/dist/ReactToastify.css';
 import './globals.css';
+import ProviderWrapper from './ProviderWrapper';
 
 const outfit = Outfit({ subsets: ['latin'] });
 
@@ -19,14 +21,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning={true}>
       <body className={outfit.className}>
         <ToastContainer />
-        <>
+        <ProviderWrapper>
           <Header />
-          {children}
-        </>
-        </body>
+          <div className='flex'>
+            <Sidebar />
+            <div>{children}</div>
+          </div>
+        </ProviderWrapper>
+      </body>
     </html>
   );
 }
