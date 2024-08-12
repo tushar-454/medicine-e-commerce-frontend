@@ -18,8 +18,7 @@ const Sidebar = () => {
   );
   const dispatch = useDispatch<AppDispatch>();
   const searchParams = useSearchParams();
-  const search = searchParams.get('category');
-  console.log(search);
+  const categoryQuery = searchParams.get('category');
 
   const toggle = (key: string) => {
     setOpenStates((prevState) => ({
@@ -43,6 +42,7 @@ const Sidebar = () => {
           toggle={toggle}
           parentKey={category._id}
           openStates={openStates}
+          categoryQuery={categoryQuery}
         />
       ))}
     </aside>

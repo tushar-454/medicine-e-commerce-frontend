@@ -1,4 +1,5 @@
 import categoryReducer from '@/feature/categoriesSlice/categoriesSlice';
+import productReducer from '@/feature/productSlice/productSlice';
 import publicStateReducer from '@/feature/publicStateSlice/publicStateSlice';
 import userReducer from '@/feature/userSlice/userSlice';
 import { configureStore } from '@reduxjs/toolkit';
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   publicState: publicStateReducer,
   user: userReducer,
   category: categoryReducer,
+  product: productReducer,
 });
 
 const persistConfig = {

@@ -15,4 +15,5 @@ export interface CategoryItemProps {
   toggle: (key: string) => void;
   parentKey: string;
   openStates: any;
+  categoryQuery: string | null;
 }
