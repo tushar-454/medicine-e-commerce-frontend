@@ -1,7 +1,7 @@
 import PublicRoute from '@/components/sidebar/PublicRoute';
 import ProviderWrapper from '../(home)/ProviderWrapper';
 
-export default function LoginLayout({
+export default function SignupLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
