@@ -1,27 +1,29 @@
+import { userLogin } from '@/api/user';
+import { InitialStateType } from '@/types/user';
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+const initialState: InitialStateType = {
   isLoggedIn: false,
-  lastLogin: null,
-  userInfo: null,
+  user: null,
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-    login: (state, action) => {
-      state.isLoggedIn = true;
-      state.lastLogin = action.payload.lastLogin;
-      state.userInfo = action.payload.userInfo;
-    },
-    logout: (state) => {
-      state.isLoggedIn = false;
-      state.lastLogin = null;
-      state.userInfo = null;
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(userLogin.pending, (state, action) => {
+        state.isLoggedIn = false;
+      })
+      .addCase(userLogin.fulfilled, (state, action) => {
+        state.isLoggedIn = true;
+        state.user = action.payload.user;
+      })
+      .addCase(userLogin.rejected, (state, action) => {
+        state.isLoggedIn = false;
+      });
   },
 });
 
-export const { login, logout } = userSlice.actions;
 export default userSlice.reducer;

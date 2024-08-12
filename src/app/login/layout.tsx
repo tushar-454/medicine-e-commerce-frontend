@@ -1,3 +1,5 @@
+import ProviderWrapper from '../(home)/ProviderWrapper';
+
 export default function LoginLayout({
   children,
 }: Readonly<{
@@ -5,7 +7,9 @@ export default function LoginLayout({
 }>) {
   return (
     <div>
-      <main>{children}</main>
+      <main>
+        <ProviderWrapper>{children}</ProviderWrapper>
+      </main>
     </div>
   );
 }
