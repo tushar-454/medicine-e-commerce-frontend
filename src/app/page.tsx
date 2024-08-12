@@ -1,6 +1,7 @@
 'use client';
 
 import { fetchProduct } from '@/api/product';
+import ProductCard from '@/components/product/ProductCard';
 import { AppDispatch, RootState } from '@/store/store';
 import { ProductType } from '@/types/product';
 import { useEffect } from 'react';
@@ -31,18 +32,13 @@ export default function Home() {
       {!isLoading && !isError && products?.length === 0 && (
         <p className='mt-10 text-neutral-400'>No medicine found</p>
       )}
-      <div>
+      <div className='my-10 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
         {!isError &&
           !isLoading &&
           products &&
           products?.length > 0 &&
           products?.map((product: ProductType) => (
-            <div key={product._id} className='p-2'>
-              <p>{product.name}</p>
-              <p>{product.description}</p>
-              <p>{product.category}</p>
-              <p>{product.variants.toString()} </p>
-            </div>
+            <ProductCard key={product._id} product={product} />
           ))}
       </div>
     </div>

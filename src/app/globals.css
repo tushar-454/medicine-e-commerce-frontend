@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .atc-button {
+    @apply rounded-lg bg-surfie-green-600/80 px-3 py-2 text-white transition-all hover:bg-surfie-green-600;
+  }
+}

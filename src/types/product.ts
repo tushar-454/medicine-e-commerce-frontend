@@ -27,3 +27,7 @@ export interface ProductSliceInitialState {
   isError: boolean;
   product: ProductType[] | null;
 }
+
+export interface ProductCardProps {
+  product: ProductType;
+}
