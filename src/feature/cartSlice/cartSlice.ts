@@ -1,4 +1,4 @@
-import { getCarts } from '@/api/cart';
+import { deleteCart, getCarts, updateCart } from '@/api/cart';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -26,6 +26,8 @@ const cartSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
       });
+    builder.addCase(deleteCart.fulfilled, () => {});
+    builder.addCase(updateCart.fulfilled, () => {});
   },
 });
 
