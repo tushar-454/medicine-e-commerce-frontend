@@ -1,5 +1,6 @@
 'use client';
 
+import { createToken } from '@/api/token';
 import { userLogin } from '@/api/user';
 import { AppDispatch } from '@/store/store';
 import Link from 'next/link';
@@ -29,6 +30,12 @@ const Login = () => {
       if (res.payload?.status === 200) {
         toast.success('Login successful');
         router.replace('/');
+        const response = await dispatch(
+          createToken({
+            email: res.payload.user.email,
+            role: res.payload.user.role,
+          }),
+        );
       }
       if (!res.payload) {
         toast.error('Invalid email or password');

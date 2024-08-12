@@ -1,6 +1,7 @@
 import categoryReducer from '@/feature/categoriesSlice/categoriesSlice';
 import productReducer from '@/feature/productSlice/productSlice';
 import publicStateReducer from '@/feature/publicStateSlice/publicStateSlice';
+import tokenReducer from '@/feature/tokenSlice/tokenSlice';
 import userReducer from '@/feature/userSlice/userSlice';
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
@@ -21,13 +22,14 @@ const rootReducer = combineReducers({
   user: userReducer,
   category: categoryReducer,
   product: productReducer,
+  token: tokenReducer,
 });
 
 const persistConfig = {
   key: 'root',
   version: 1,
   storage,
-  whitelist: ['user'],
+  whitelist: ['user', 'token'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
