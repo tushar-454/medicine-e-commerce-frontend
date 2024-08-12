@@ -2,6 +2,7 @@
 import { toggleSidebar } from '@/feature/publicStateSlice/publicStateSlice';
 import { AppDispatch, RootState } from '@/store/store';
 import Image from 'next/image';
+import Link from 'next/link';
 import { HiMenuAlt2 } from 'react-icons/hi';
 import { useDispatch, useSelector } from 'react-redux';
 import Container from '../shared/Container';
@@ -14,7 +15,7 @@ import SearchMedicing from './SearchMedicing';
 const Header = () => {
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch<AppDispatch>();
-  console.log(`${process.env.NEXT_PUBLIC_API_BASE_URL}${user?.photo}`);
+
   return (
     <header className='border-b-4 border-surfie-green-600 bg-white py-3'>
       <Container>
@@ -33,13 +34,17 @@ const Header = () => {
             {isLoggedIn ? (
               <div>
                 {user && (
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${user?.photo}`}
-                    alt={user?.name}
-                    width={50}
-                    height={50}
-                    className='h-12 w-12 rounded-full object-cover'
-                  />
+                  <Link
+                    href={user?.role === 'user' ? '/profile' : '/dashboard'}
+                  >
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${user?.photo}`}
+                      alt={user?.name}
+                      width={50}
+                      height={50}
+                      className='h-12 w-12 rounded-full object-cover'
+                    />
+                  </Link>
                 )}
               </div>
             ) : (

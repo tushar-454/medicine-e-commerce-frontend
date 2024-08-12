@@ -1,4 +1,4 @@
-import { createToken } from '@/api/token';
+import { createToken, deleteToken } from '@/api/token';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: { token: string } = {
@@ -12,6 +12,9 @@ const tokenSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(createToken.fulfilled, (state, action) => {
       state.token = action.payload.accessToken;
+    });
+    builder.addCase(deleteToken.fulfilled, (state) => {
+      state.token = '';
     });
   },
 });

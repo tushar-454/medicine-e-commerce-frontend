@@ -15,3 +15,11 @@ export const createToken = createAsyncThunk(
     }
   },
 );
+
+export const deleteToken = createAsyncThunk('token/deleteToken', async () => {
+  try {
+    await axios.delete('/auth/delete-token');
+  } catch (error) {
+    throw new Error();
+  }
+});

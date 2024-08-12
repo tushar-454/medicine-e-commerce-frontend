@@ -33,12 +33,13 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
         className='flex h-full w-full items-center justify-between font-medium text-black outline-none'
       >
         {category?.subCategories?.length > 0 ? (
-          <Link href={'/'} className='flex gap-2'>
+          <Link href={'/'} className='flex items-center gap-2'>
             <Image
               src={category.photo}
               alt={category.slug}
               width={20}
               height={20}
+              className='min-w-8'
             />
             <span>{category.name}</span>
           </Link>
