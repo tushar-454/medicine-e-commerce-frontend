@@ -1,5 +1,6 @@
 'use client';
 
+import { getCarts } from '@/api/cart';
 import { deleteToken } from '@/api/token';
 import logout from '@/assets/log-out.png';
 import order from '@/assets/received.png';
@@ -22,6 +23,7 @@ const ProfileSidebar = () => {
   const handleLogout = async () => {
     await dispatch(deleteToken());
     await dispatch(removeUser());
+    await dispatch(getCarts('66b9f5567d9698830f799f8e'));
     await persistor.purge();
     toast.success('Logout successfully');
     router.replace('/');
