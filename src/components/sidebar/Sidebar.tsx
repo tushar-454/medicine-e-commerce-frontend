@@ -10,8 +10,8 @@ import CategoryItem from './CategoryItem';
 
 const Sidebar = () => {
   const [openStates, setOpenStates] = useState<{ [key: string]: boolean }>({});
-  const categories = useSelector(
-    (state: RootState) => state.category.categories,
+  const { isError, isLoading, categories } = useSelector(
+    (state: RootState) => state.category,
   );
   const isSidebarOpen = useSelector(
     (state: RootState) => state.publicState.isSidebarOpen,
@@ -34,7 +34,11 @@ const Sidebar = () => {
     <aside
       className={`absolute h-screen min-w-[300px] border-r-2 border-surfie-green-500 bg-white transition-all lg:static ${isSidebarOpen ? 'left-0' : '-left-80'}`}
     >
-      {categories.map((category: categoryType, idx) => (
+      {isLoading && <p className='text-neutral-400'>Loading...</p>}
+      {isError && (
+        <p className='text-neutral-400'>Something is wrong fetching category</p>
+      )}
+      {categories?.map((category: categoryType, idx) => (
         <CategoryItem
           key={category._id}
           category={category}
