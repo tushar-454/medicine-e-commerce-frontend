@@ -1,7 +1,7 @@
-import Header from '@/components/header/Header';
 import ProfileSidebar from '@/components/profile/ProfileSidebar';
 import PrivateRoute from '@/components/sidebar/PrivateRoute';
 import ProviderWrapper from '../(home)/ProviderWrapper';
+import Header from '../../components/header/Header';
 
 export default function ProfileLayout({
   children,

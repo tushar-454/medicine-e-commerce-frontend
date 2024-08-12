@@ -1,5 +1,5 @@
-import Header from '@/components/header/Header';
 import Sidebar from '@/components/sidebar/Sidebar';
+import Header from '../../components/header/Header';
 import ProviderWrapper from './ProviderWrapper';
 
 export default function RootLayout({
