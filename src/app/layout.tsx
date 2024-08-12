@@ -22,6 +22,7 @@ export default function RootLayout({
       <body className={outfit.className}>
         <ToastContainer />
         <div>{children}</div>
+        <div id='modal-root'></div>
       </body>
     </html>
   );
