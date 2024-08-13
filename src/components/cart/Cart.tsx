@@ -1,6 +1,7 @@
 'use client';
 
 import { deleteCart, getCarts, updateCart } from '@/api/cart';
+import { toggleModal } from '@/feature/publicStateSlice/publicStateSlice';
 import { AppDispatch, RootState } from '@/store/store';
 import { CartType } from '@/types/cart';
 import Image from 'next/image';
@@ -28,7 +29,9 @@ const Cart = () => {
       const withDiscount = total - (total * cur.product.discount) / 100;
       return acc + withDiscount;
     }, 0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const isModalOpen = useSelector(
+    (state: RootState) => state.publicState.isModalOpen,
+  );
   const dispatch = useDispatch<AppDispatch>();
   const [quantity, setQuantity] = useState(0);
 
@@ -91,9 +94,9 @@ const Cart = () => {
     if (carts.length === 0) {
       return toast.error('No item in cart');
     }
-    setIsModalOpen(true);
+    dispatch(toggleModal());
   };
-  const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => dispatch(toggleModal());
   return (
     <>
       <div onClick={openModal} className='cursor-pointer'>

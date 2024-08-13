@@ -1,8 +1,11 @@
 import { getCarts } from '@/api/cart';
+import { fetchProduct } from '@/api/product';
+import { toggleModal } from '@/feature/publicStateSlice/publicStateSlice';
 import { AppDispatch, RootState } from '@/store/store';
 import { ProductCardProps } from '@/types/product';
 import axios from '@/utils/axios';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 import React, { useState } from 'react';
 import { TbCurrencyTaka } from 'react-icons/tb';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +16,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const dispatch = useDispatch<AppDispatch>();
   const [isVarientOpen, setIsVarientOpen] = useState(false);
   const [selectedVarient, setSelectedVarient] = useState(0);
+  const searchParams = useSearchParams();
+  const categoryQuery = searchParams.get('category');
 
   // handle add to cart
   const handleAddToCart = async () => {
@@ -30,6 +35,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       if (res.data.status === 201) {
         toast.success('Product added to cart');
         dispatch(getCarts(user._id));
+        dispatch(
+          fetchProduct({ category: categoryQuery || '', user: user._id }),
+        );
       } else {
         toast.error('Failed to add product to cart');
       }
@@ -110,13 +118,23 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </button>
         </div>
         {/* first view atc button  */}
-        <button
-          onClick={() => setIsVarientOpen(true)}
-          className='atc-button block w-full disabled:cursor-not-allowed disabled:bg-crimson-red-200'
-          disabled={product.quantity === 0}
-        >
-          {product.quantity === 0 ? 'Stock Out' : 'Add to cart'}
-        </button>
+        {!product.isCarted && (
+          <button
+            onClick={() => setIsVarientOpen(true)}
+            className='atc-button block w-full disabled:cursor-not-allowed disabled:bg-crimson-red-200'
+            disabled={product.quantity === 0}
+          >
+            {product.quantity === 0 ? 'Stock Out' : 'Add to cart'}
+          </button>
+        )}
+        {product.isCarted && (
+          <button
+            onClick={() => dispatch(toggleModal())}
+            className='atc-button block w-full bg-blue-600/90 hover:bg-blue-600'
+          >
+            View cart
+          </button>
+        )}
       </div>
     </div>
   );

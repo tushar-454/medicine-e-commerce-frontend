@@ -1,12 +1,12 @@
 'use client';
 import { fetchProduct } from '@/api/product';
-import { AppDispatch } from '@/store/store';
+import { AppDispatch, RootState } from '@/store/store';
 import { CategoryItemProps } from '@/types/category';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const CategoryItem: React.FC<CategoryItemProps> = ({
   category,
@@ -18,13 +18,24 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
 }) => {
   const currentKey = parentKey;
   const dispatch = useDispatch<AppDispatch>();
+  const user = useSelector((state: RootState) => state.user.user);
   useEffect(() => {
     if (categoryQuery) {
-      dispatch(fetchProduct(categoryQuery));
+      dispatch(
+        fetchProduct({
+          category: categoryQuery,
+          user: user?._id || '66b9f5567d9698830f799f8e',
+        }),
+      );
     } else {
-      dispatch(fetchProduct());
+      dispatch(
+        fetchProduct({
+          category: '',
+          user: user?._id || '66b9f5567d9698830f799f8e',
+        }),
+      );
     }
-  }, [dispatch, categoryQuery]);
+  }, [dispatch, categoryQuery, user]);
 
   return (
     <div className='my-2 border border-transparent bg-surfie-green-100 p-3 py-3 text-black transition-all hover:border hover:border-white hover:bg-surfie-green-200'>

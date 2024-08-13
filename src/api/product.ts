@@ -3,13 +3,13 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchProduct = createAsyncThunk(
   'product/fetchProduct',
-  async (category?: string) => {
+  async ({ category, user }: { category: string; user: string }) => {
     try {
       if (category) {
-        const res = await axios.get(`/product?category=${category}`);
+        const res = await axios.post(`/product?category=${category}`, { user });
         return res.data;
       }
-      const res = await axios.get('/product');
+      const res = await axios.post('/product', { user });
       return res.data;
     } catch (error) {
       throw new Error();

@@ -13,6 +13,7 @@ export type ProductType = {
   isTrending: boolean;
   isDiscounted: boolean;
   isDeleted: boolean;
+  isCarted: boolean;
 };
 
 export type ProductVariantType = {

@@ -14,11 +14,17 @@ export default function Home() {
     isError,
     product: products,
   } = useSelector((state: RootState) => state.product);
+  const user = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(fetchProduct());
-  }, [dispatch]);
+    dispatch(
+      fetchProduct({
+        category: '',
+        user: user?._id || '66b9f5567d9698830f799f8e',
+      }),
+    );
+  }, [dispatch, user]);
 
   return (
     <>
