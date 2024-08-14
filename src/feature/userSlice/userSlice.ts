@@ -7,6 +7,7 @@ const initialState: InitialStateType = {
   isError: false,
   isLoggedIn: false,
   user: null,
+  users: null,
 };
 
 const userSlice = createSlice({
@@ -37,7 +38,7 @@ const userSlice = createSlice({
       })
       .addCase(fetchAdminUsers.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload.users;
+        state.users = action.payload.users;
       })
       .addCase(fetchAdminUsers.rejected, (state) => {
         state.isLoading = false;

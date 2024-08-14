@@ -15,4 +15,9 @@ export type InitialStateType = {
   isError: boolean;
   isLoggedIn: boolean;
   user: null | UserType;
+  users: null | UserType;
 };
+
+export interface UserItemProps {
+  user: UserType;
+}
