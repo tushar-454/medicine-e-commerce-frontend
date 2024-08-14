@@ -14,3 +14,15 @@ export const userLogin = createAsyncThunk(
     }
   },
 );
+
+export const fetchAdminUsers = createAsyncThunk(
+  'user/fetchAdminUsers',
+  async () => {
+    try {
+      const res = await axios.get('/admin/users');
+      return res.data;
+    } catch (error) {
+      throw new Error();
+    }
+  },
+);

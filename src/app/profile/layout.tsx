@@ -1,5 +1,5 @@
 import ProfileSidebar from '@/components/profile/ProfileSidebar';
-import PrivateRoute from '@/components/sidebar/PrivateRoute';
+import PrivateRoute from '@/components/shared/PrivateRoute';
 import ProviderWrapper from '../(home)/ProviderWrapper';
 import Header from '../../components/header/Header';
 

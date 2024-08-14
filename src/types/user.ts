@@ -11,6 +11,8 @@ export type UserType = {
 };
 
 export type InitialStateType = {
+  isLoading: boolean;
+  isError: boolean;
   isLoggedIn: boolean;
   user: null | UserType;
 };

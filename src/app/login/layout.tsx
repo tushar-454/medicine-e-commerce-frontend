@@ -1,4 +1,4 @@
-import PublicRoute from '@/components/sidebar/PublicRoute';
+import PublicRoute from '@/components/shared/PublicRoute';
 import ProviderWrapper from '../(home)/ProviderWrapper';
 
 export default function LoginLayout({

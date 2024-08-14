@@ -1,8 +1,10 @@
-import { userLogin } from '@/api/user';
+import { fetchAdminUsers, userLogin } from '@/api/user';
 import { InitialStateType } from '@/types/user';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: InitialStateType = {
+  isLoading: false,
+  isError: false,
   isLoggedIn: false,
   user: null,
 };
@@ -27,6 +29,19 @@ const userSlice = createSlice({
       })
       .addCase(userLogin.rejected, (state, action) => {
         state.isLoggedIn = false;
+      });
+    builder
+      .addCase(fetchAdminUsers.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(fetchAdminUsers.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload.users;
+      })
+      .addCase(fetchAdminUsers.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
       });
   },
 });

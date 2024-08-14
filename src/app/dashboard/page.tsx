@@ -1,5 +1,7 @@
 'use client';
 
+import AdminDashboard from '@/components/dashboard/AdminDashboard';
+import SuperAdminDashboard from '@/components/dashboard/SuperAdminDashboard';
 import { RootState } from '@/store/store';
 import { useSelector } from 'react-redux';
 
@@ -7,8 +9,8 @@ const Dashboard = () => {
   const user = useSelector((state: RootState) => state.user.user);
   return (
     <>
-      {user?.role === 'admin' && <div>Admin Dashboard</div>}
-      {user?.role === 'super-admin' && <div>Super Admin Dashboard</div>}
+      {user?.role === 'admin' && <AdminDashboard />}
+      {user?.role === 'super-admin' && <SuperAdminDashboard />}
     </>
   );
 };
