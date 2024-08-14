@@ -32,7 +32,7 @@ const Sidebar = () => {
   }, [dispatch]);
   return (
     <aside
-      className={`absolute h-screen min-w-[300px] border-r-2 border-surfie-green-500 bg-white transition-all lg:static ${isSidebarOpen ? 'left-0' : '-left-80'}`}
+      className={`absolute z-[999] h-screen min-w-[300px] border-r-2 border-surfie-green-500 bg-white transition-all lg:static ${isSidebarOpen ? 'left-0' : '-left-80'}`}
     >
       {isLoading && <p className='text-neutral-400'>Loading...</p>}
       {isError && (

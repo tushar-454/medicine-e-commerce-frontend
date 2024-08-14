@@ -33,7 +33,7 @@ const DashboardSidebar = () => {
 
   return (
     <aside
-      className={`absolute h-screen min-w-[300px] border-r-2 border-surfie-green-500 bg-white transition-all lg:static ${isSidebarOpen ? 'left-0' : '-left-80'}`}
+      className={`absolute z-[999] h-screen min-w-[300px] border-r-2 border-surfie-green-500 bg-white transition-all lg:static ${isSidebarOpen ? 'left-0' : '-left-80'}`}
     >
       <Link
         href={'/dashboard'}
@@ -89,7 +89,7 @@ const DashboardSidebar = () => {
       </Link>
       <Link
         onClick={handleLogout}
-        href={'/'}
+        href={''}
         className='my-2 flex items-center gap-2 border border-transparent bg-surfie-green-100 p-3 py-3 font-medium text-black transition-all hover:border hover:border-white hover:bg-surfie-green-200'
       >
         <Image
