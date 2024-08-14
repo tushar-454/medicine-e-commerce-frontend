@@ -27,8 +27,18 @@ export type OrderType = {
 };
 
 export type OrderProductType = {
-  product: string;
+  product: string | any;
   quantity: number;
-  varient: string;
+  varient: string | any;
   total: number;
 };
+
+export type OrderInitialStateType = {
+  isLoading: boolean;
+  isError: boolean;
+  orders: OrderType[] | null;
+};
+
+export interface OrderItemProps {
+  order: OrderType;
+}

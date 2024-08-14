@@ -1,5 +1,6 @@
 import cartReducer from '@/feature/cartSlice/cartSlice';
 import categoryReducer from '@/feature/categoriesSlice/categoriesSlice';
+import orderReducer from '@/feature/orderSlice/orderSlice';
 import productReducer from '@/feature/productSlice/productSlice';
 import publicStateReducer from '@/feature/publicStateSlice/publicStateSlice';
 import tokenReducer from '@/feature/tokenSlice/tokenSlice';
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   product: productReducer,
   token: tokenReducer,
   cart: cartReducer,
+  order: orderReducer,
 });
 
 const persistConfig = {

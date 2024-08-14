@@ -14,7 +14,7 @@ export default function ProfileLayout({
         <Header />
         <div className='flex'>
           <ProfileSidebar />
-          <div className='flex-grow'>{children}</div>
+          <div className='w-full flex-grow overflow-hidden'>{children}</div>
         </div>
       </PrivateRoute>
     </ProviderWrapper>
