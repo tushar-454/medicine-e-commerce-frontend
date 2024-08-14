@@ -1,5 +1,6 @@
 'use client';
 import axios from '@/utils/axios';
+import { uploadImage } from '@/utils/uploadImg';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -91,15 +92,20 @@ const Signup: React.FC = () => {
     try {
       const formData = new FormData();
       formData.append('photo', file as Blob);
-      const res = await axios.post('/image/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      if (res.data.status === 200) {
-        setPhoto(res.data.file);
+      // const res = await axios.post('/image/upload', formData, {
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data',
+      //   },
+      // });
+      if (file) {
+        const photoLink = await uploadImage(file);
+        setPhoto(photoLink);
         toast.success('Photo uploaded');
       }
+      // if (res.data.status === 200) {
+      //   setPhoto(res.data.file);
+      //   toast.success('Photo uploaded');
+      // }
     } catch (error) {
       console.log(error);
     }

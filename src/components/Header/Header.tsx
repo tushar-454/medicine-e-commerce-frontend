@@ -38,7 +38,8 @@ const Header = () => {
                     href={user?.role === 'user' ? '/profile' : '/dashboard'}
                   >
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${user?.photo}`}
+                      // src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${user?.photo}`}
+                      src={user?.photo}
                       alt={user?.name}
                       width={50}
                       height={50}
