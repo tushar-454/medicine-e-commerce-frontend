@@ -32,3 +32,7 @@ export interface ProductSliceInitialState {
 export interface ProductCardProps {
   product: ProductType;
 }
+
+export interface ProductItemProps {
+  product: ProductType;
+}

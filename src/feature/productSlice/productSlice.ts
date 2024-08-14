@@ -1,4 +1,4 @@
-import { fetchProduct } from '@/api/product';
+import { fetchAdminProduct, fetchProduct } from '@/api/product';
 import { createSlice } from '@reduxjs/toolkit';
 import { ProductSliceInitialState } from './../../types/product';
 
@@ -24,6 +24,20 @@ const productSlice = createSlice({
         state.product = action.payload.products;
       })
       .addCase(fetchProduct.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+      });
+    builder
+      .addCase(fetchAdminProduct.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(fetchAdminProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.product = action.payload.products;
+      })
+      .addCase(fetchAdminProduct.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       });

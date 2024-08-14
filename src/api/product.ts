@@ -16,3 +16,15 @@ export const fetchProduct = createAsyncThunk(
     }
   },
 );
+
+export const fetchAdminProduct = createAsyncThunk(
+  'product/fetchAdminProduct',
+  async () => {
+    try {
+      const res = await axios.get('/admin/products');
+      return res.data;
+    } catch (error) {
+      throw new Error();
+    }
+  },
+);
