@@ -12,3 +12,15 @@ export const getOrders = createAsyncThunk(
     }
   },
 );
+
+export const getAdminOrders = createAsyncThunk(
+  'order/getAdminOrders',
+  async () => {
+    try {
+      const response = await axios.get(`/admin/orders`);
+      return response.data;
+    } catch (error) {
+      throw new Error();
+    }
+  },
+);

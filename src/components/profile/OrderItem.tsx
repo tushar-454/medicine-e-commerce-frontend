@@ -3,7 +3,6 @@ import axios from '@/utils/axios';
 import { toast } from 'react-toastify';
 
 const OrderItem: React.FC<OrderItemProps> = ({ order }) => {
-  console.log(order.orderStatus);
   const handleOrderUpdate = async (
     e: React.ChangeEvent<HTMLSelectElement>,
     orderId: string,

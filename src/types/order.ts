@@ -4,7 +4,7 @@ export interface OrderProps {
 
 export type OrderType = {
   _id: string;
-  user: string;
+  user: string | any;
   products: OrderProductType[];
   totalAmount: number;
   paymentMethod: string;
@@ -14,7 +14,7 @@ export type OrderType = {
     upazila: string;
     address: string;
   };
-  Phone: string;
+  phone: string;
   paymentStatus: string;
   orderStatus: string;
   isPaid: boolean;
