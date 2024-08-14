@@ -27,6 +27,23 @@ const UserItem: React.FC<UserItemProps> = ({ user }) => {
     }
   };
 
+  // update user
+  const handleUpdateUser = async (
+    e: React.ChangeEvent<HTMLSelectElement>,
+    email: string,
+  ) => {
+    try {
+      const res = await axios.put(`/super-admin/user/${email}`, {
+        role: e.target.value,
+      });
+      if (res.data.status === 200) {
+        toast.success('User updated successfully');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <tr className='transition-all hover:bg-neutral-200/50'>
       <td className='border p-2'>{user.name}</td>
@@ -37,6 +54,7 @@ const UserItem: React.FC<UserItemProps> = ({ user }) => {
           id='role'
           className='input'
           defaultValue={user.role}
+          onChange={(e) => handleUpdateUser(e, user.email)}
         >
           <option value='admin'>Admin</option>
           <option value='user'>User</option>

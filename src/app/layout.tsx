@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning={true}>
       <body className={outfit.className}>
-        <ToastContainer />
+        <ToastContainer autoClose={800} />
         <div>{children}</div>
         <div id='modal-root'></div>
       </body>
