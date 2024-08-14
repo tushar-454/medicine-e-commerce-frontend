@@ -26,3 +26,15 @@ export const fetchAdminUsers = createAsyncThunk(
     }
   },
 );
+
+export const fetchSuperAdminUsers = createAsyncThunk(
+  'user/fetchSuperAdminUsers',
+  async () => {
+    try {
+      const res = await axios.get('/super-admin/users');
+      return res.data;
+    } catch (error) {
+      throw new Error();
+    }
+  },
+);

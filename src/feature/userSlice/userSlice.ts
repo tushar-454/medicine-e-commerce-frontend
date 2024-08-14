@@ -1,4 +1,4 @@
-import { fetchAdminUsers, userLogin } from '@/api/user';
+import { fetchAdminUsers, fetchSuperAdminUsers, userLogin } from '@/api/user';
 import { InitialStateType } from '@/types/user';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -41,6 +41,19 @@ const userSlice = createSlice({
         state.users = action.payload.users;
       })
       .addCase(fetchAdminUsers.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+      });
+    builder
+      .addCase(fetchSuperAdminUsers.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(fetchSuperAdminUsers.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.users = action.payload.users;
+      })
+      .addCase(fetchSuperAdminUsers.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       });

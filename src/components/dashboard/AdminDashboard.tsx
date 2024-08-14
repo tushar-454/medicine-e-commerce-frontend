@@ -3,7 +3,6 @@ import { AppDispatch, RootState } from '@/store/store';
 import { UserType } from '@/types/user';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import UserItem from './UserItem';
 
 const AdminDashboard = () => {
   const { users, isLoading, isError } = useSelector(
@@ -39,7 +38,14 @@ const AdminDashboard = () => {
             {!isError && !isLoading && Array.isArray(users) && (
               <tbody>
                 {users.map((user: UserType) => (
-                  <UserItem key={user._id} user={user} />
+                  <tr
+                    key={user._id}
+                    className='transition-all hover:bg-neutral-200/50'
+                  >
+                    <td className='border p-2'>{user.name}</td>
+                    <td className='border p-2'>{user.email}</td>
+                    <td className='border p-2'>{user.role}</td>
+                  </tr>
                 ))}
               </tbody>
             )}
