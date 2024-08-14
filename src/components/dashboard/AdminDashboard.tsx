@@ -17,11 +17,11 @@ const AdminDashboard = () => {
       <h2 className='text-xl font-semibold'>All Users</h2>
       {isError && (
         <p className='my-10 animate-pulse text-red-500'>
-          Something went wrong getting order lists
+          Something went wrong getting user lists
         </p>
       )}
       {!isLoading && Array.isArray(users) && users.length === 0 && (
-        <p className='my-10 animate-pulse text-black'>No Order Item</p>
+        <p className='my-10 animate-pulse text-black'>No User Item</p>
       )}
       {/* users here  */}
       <div className='my-10 w-full overflow-x-auto'>

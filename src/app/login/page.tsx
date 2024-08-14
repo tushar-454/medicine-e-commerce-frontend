@@ -36,6 +36,9 @@ const Login = () => {
             role: res.payload.user.role,
           }),
         );
+        if (response.payload) {
+          localStorage.setItem('accessToken', response.payload.accessToken);
+        }
       }
       if (!res.payload) {
         toast.error('Invalid email or password');

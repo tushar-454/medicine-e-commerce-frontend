@@ -25,6 +25,7 @@ const ProfileSidebar = () => {
     await dispatch(removeUser());
     await dispatch(getCarts('66b9f5567d9698830f799f8e'));
     await persistor.purge();
+    localStorage.clear();
     toast.success('Logout successfully');
     router.replace('/');
   };
