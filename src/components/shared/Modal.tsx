@@ -26,7 +26,7 @@ const Modal = ({ children, isOpen, onClose, title }: ModalType) => {
   return isOpen
     ? ReactDOM.createPortal(
         <div className='absolute inset-0 top-0 z-50 flex items-center justify-center bg-black bg-opacity-50'>
-          <div className='relative w-full rounded bg-white p-4 shadow-lg sm:w-[640px]'>
+          <div className='relative w-full rounded bg-white p-4 shadow-lg md:w-[768px]'>
             <div className='flex items-center justify-between'>
               <h2 className='text-xl font-semibold text-surfie-green-500'>
                 {title}

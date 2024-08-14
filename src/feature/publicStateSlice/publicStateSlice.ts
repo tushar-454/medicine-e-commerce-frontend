@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isSidebarOpen: false,
   isModalOpen: false,
+  isOrderModalOpen: false,
 };
 
 const publicStateSlice = createSlice({
@@ -15,8 +16,12 @@ const publicStateSlice = createSlice({
     toggleModal: (state) => {
       state.isModalOpen = !state.isModalOpen;
     },
+    toggleOrder: (state) => {
+      state.isOrderModalOpen = !state.isOrderModalOpen;
+    },
   },
 });
 
-export const { toggleSidebar, toggleModal } = publicStateSlice.actions;
+export const { toggleSidebar, toggleModal, toggleOrder } =
+  publicStateSlice.actions;
 export default publicStateSlice.reducer;

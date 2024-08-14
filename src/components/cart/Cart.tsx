@@ -1,7 +1,10 @@
 'use client';
 
 import { deleteCart, getCarts, updateCart } from '@/api/cart';
-import { toggleModal } from '@/feature/publicStateSlice/publicStateSlice';
+import {
+  toggleModal,
+  toggleOrder,
+} from '@/feature/publicStateSlice/publicStateSlice';
 import { AppDispatch, RootState } from '@/store/store';
 import { CartType } from '@/types/cart';
 import Image from 'next/image';
@@ -12,6 +15,7 @@ import { RiDeleteBin5Line } from 'react-icons/ri';
 import { TbCurrencyTaka } from 'react-icons/tb';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import Order from '../order/Order';
 import Modal from '../shared/Modal';
 
 const Cart = () => {
@@ -19,6 +23,9 @@ const Cart = () => {
     (state: RootState) => state.cart,
   );
   const user = useSelector((state: RootState) => state.user.user);
+  const isOrderModalOpen = useSelector(
+    (state: RootState) => state.publicState.isOrderModalOpen,
+  );
 
   const total =
     !isError &&
@@ -34,6 +41,7 @@ const Cart = () => {
   );
   const dispatch = useDispatch<AppDispatch>();
   const [quantity, setQuantity] = useState(0);
+  const [order, setOrder] = useState({});
 
   // delete cart handler
   const cartDeleteHandler = async (cartId: string) => {
@@ -96,7 +104,14 @@ const Cart = () => {
     }
     dispatch(toggleModal());
   };
+  const openOrder = () => {
+    if (carts.length === 0) {
+      return toast.error('No item in cart');
+    }
+    dispatch(toggleOrder());
+  };
   const closeModal = () => dispatch(toggleModal());
+
   return (
     <>
       <div onClick={openModal} className='cursor-pointer'>
@@ -195,8 +210,17 @@ const Cart = () => {
               </div>
             ))}
           </div>
+          <div className='mt-10 flex justify-end'>
+            <button
+              onClick={() => dispatch(toggleOrder())}
+              className='atc-button text-end'
+            >
+              Order now
+            </button>
+          </div>
         </Modal>
       </div>
+      {isOrderModalOpen && <Order openOrder={openOrder} />}
     </>
   );
 };

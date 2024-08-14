@@ -5,7 +5,7 @@ export type UserType = {
   photo: string;
   role: string;
   division: string;
-  distric: string;
+  district: string;
   upazila: string;
   address: string;
 };
