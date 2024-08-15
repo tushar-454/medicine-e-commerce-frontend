@@ -1,6 +1,6 @@
+import Header from '@/components/header/Header';
 import PrivateRoute from '@/components/shared/PrivateRoute';
 import ProviderWrapper from '../(home)/ProviderWrapper';
-import Header from '../../components/header/Header';
 
 export default function ProductLayout({
   children,
