@@ -64,10 +64,3 @@ yarn dev
 ```bash
 yarn dev -p <port_number>
 ```
-
-7. For better experience to make a production build:
-
-```bash
-yarn build
-yarn start
-```

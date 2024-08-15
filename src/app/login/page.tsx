@@ -47,6 +47,54 @@ const Login = () => {
       console.log(error);
     }
   };
+  const handleDefaultLogin = async (type: string) => {
+    try {
+      if (type === 'super-admin') {
+        const res = await dispatch(
+          userLogin({ email: 'superadmin@gmail.com', password: '111111' }),
+        );
+        if (res.payload?.status === 200) {
+          toast.success('Super Admin Login successful');
+          router.replace('/');
+          const response = await dispatch(
+            createToken({
+              email: res.payload.user.email,
+              role: res.payload.user.role,
+            }),
+          );
+          if (response.payload) {
+            localStorage.setItem('accessToken', response.payload.accessToken);
+          }
+        }
+        if (!res.payload) {
+          toast.error('Invalid email or password');
+        }
+      }
+      if (type === 'admin') {
+        const res = await dispatch(
+          userLogin({ email: 'admin@gmail.com', password: '111111' }),
+        );
+        if (res.payload?.status === 200) {
+          toast.success('Admin Login successful');
+          router.replace('/');
+          const response = await dispatch(
+            createToken({
+              email: res.payload.user.email,
+              role: res.payload.user.role,
+            }),
+          );
+          if (response.payload) {
+            localStorage.setItem('accessToken', response.payload.accessToken);
+          }
+        }
+        if (!res.payload) {
+          toast.error('Invalid email or password');
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className='flex h-screen justify-center bg-gray-100'>
@@ -88,9 +136,25 @@ const Login = () => {
           />
         </div>
 
-        <button type='submit' className='atc-button block w-full'>
-          Login
-        </button>
+        <div className='flex flex-col items-center gap-4'>
+          <button type='submit' className='atc-button block w-full'>
+            Login
+          </button>
+          <button
+            onClick={() => handleDefaultLogin('admin')}
+            type='button'
+            className='atc-button block w-full'
+          >
+            Login Admin
+          </button>
+          <button
+            onClick={() => handleDefaultLogin('super-admin')}
+            type='button'
+            className='atc-button block w-full'
+          >
+            Login Super Admin
+          </button>
+        </div>
         <p className='mt-4'>
           You have not an account?{' '}
           <Link href={'/signup'} className='text-surfie-green-600'>
