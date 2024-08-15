@@ -64,9 +64,6 @@ const OrderItem: React.FC<OrderItemProps> = ({ order }) => {
           <option value='returned'>Returned</option>
         </select>
       </td>
-      <td className='border p-2'>
-        <input type='checkbox' checked={order.isPaid} className='' />
-      </td>
     </tr>
   );
 };

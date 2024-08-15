@@ -83,11 +83,13 @@ const Order: React.FC<OrderProps> = ({ openOrder }) => {
           total: withDiscount,
         };
       }),
-      totalAmount: carts.reduce((acc, cur: CartType) => {
-        const total = cur.product.variants[cur.varient].price * cur.quantity;
-        const withDiscount = total - (total * cur.product.discount) / 100;
-        return acc + withDiscount;
-      }, 0),
+      totalAmount: carts
+        .reduce((acc, cur: CartType) => {
+          const total = cur.product.variants[cur.varient].price * cur.quantity;
+          const withDiscount = total - (total * cur.product.discount) / 100;
+          return acc + withDiscount;
+        }, 0)
+        .toFixed(2),
       paymentMethod: 'cash',
       shippingInfo: {
         division: user?.division,
@@ -239,12 +241,14 @@ const Order: React.FC<OrderProps> = ({ openOrder }) => {
             <p className='flex items-center justify-between'>
               <span>total: </span>
               <span>
-                {carts.reduce((acc, cur: CartType) => {
-                  const total =
-                    cur.product.variants[cur.varient].price * cur.quantity;
+                {carts
+                  .reduce((acc, cur: CartType) => {
+                    const total =
+                      cur.product.variants[cur.varient].price * cur.quantity;
 
-                  return acc + total;
-                }, 0)}
+                    return acc + total;
+                  }, 0)
+                  .toFixed(2)}
               </span>
             </p>
             <p className='flex items-center justify-between'>
@@ -264,13 +268,15 @@ const Order: React.FC<OrderProps> = ({ openOrder }) => {
             <p className='flex items-center justify-between'>
               <span>sub total: </span>
               <span>
-                {carts.reduce((acc, cur: CartType) => {
-                  const total =
-                    cur.product.variants[cur.varient].price * cur.quantity;
-                  const withDiscount =
-                    total - (total * cur.product.discount) / 100;
-                  return acc + withDiscount;
-                }, 0)}
+                {carts
+                  .reduce((acc, cur: CartType) => {
+                    const total =
+                      cur.product.variants[cur.varient].price * cur.quantity;
+                    const withDiscount =
+                      total - (total * cur.product.discount) / 100;
+                    return acc + withDiscount;
+                  }, 0)
+                  .toFixed(2)}
               </span>
             </p>
             <button onClick={handleOrderNow} className='atc-button my-10'>
