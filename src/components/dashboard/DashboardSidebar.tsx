@@ -2,7 +2,10 @@
 
 import { getCarts } from '@/api/cart';
 import { deleteToken } from '@/api/token';
+import category from '@/assets/categories.png';
 import logout from '@/assets/log-out.png';
+import products from '@/assets/products.png';
+import userIco from '@/assets/profile.png';
 import order from '@/assets/received.png';
 import { removeUser } from '@/feature/userSlice/userSlice';
 import { AppDispatch, persistor, RootState } from '@/store/store';
@@ -40,7 +43,7 @@ const DashboardSidebar = () => {
         className='my-2 flex items-center gap-2 border border-transparent bg-surfie-green-100 p-3 py-3 font-medium text-black transition-all hover:border hover:border-white hover:bg-surfie-green-200'
       >
         <Image
-          src={order}
+          src={userIco}
           alt='users icon'
           width={20}
           height={20}
@@ -53,7 +56,7 @@ const DashboardSidebar = () => {
         className='my-2 flex items-center gap-2 border border-transparent bg-surfie-green-100 p-3 py-3 font-medium text-black transition-all hover:border hover:border-white hover:bg-surfie-green-200'
       >
         <Image
-          src={order}
+          src={products}
           alt='Product icon'
           width={20}
           height={20}
@@ -79,7 +82,7 @@ const DashboardSidebar = () => {
         className='my-2 flex items-center gap-2 border border-transparent bg-surfie-green-100 p-3 py-3 font-medium text-black transition-all hover:border hover:border-white hover:bg-surfie-green-200'
       >
         <Image
-          src={order}
+          src={category}
           alt='categories icon'
           width={20}
           height={20}
