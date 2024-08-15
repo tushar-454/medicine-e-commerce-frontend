@@ -3,6 +3,7 @@ import categoryReducer from '@/feature/categoriesSlice/categoriesSlice';
 import orderReducer from '@/feature/orderSlice/orderSlice';
 import productReducer from '@/feature/productSlice/productSlice';
 import publicStateReducer from '@/feature/publicStateSlice/publicStateSlice';
+import relatedProductReducer from '@/feature/relatedProductSlice/relatedProductSlice';
 import tokenReducer from '@/feature/tokenSlice/tokenSlice';
 import userReducer from '@/feature/userSlice/userSlice';
 import { configureStore } from '@reduxjs/toolkit';
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   token: tokenReducer,
   cart: cartReducer,
   order: orderReducer,
+  relatedProduct: relatedProductReducer,
 });
 
 const persistConfig = {

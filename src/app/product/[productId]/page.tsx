@@ -1,5 +1,5 @@
 'use client';
-import { fetchProductById } from '@/api/product';
+import { getRelatedProduct } from '@/api/relatedProduct';
 import RelatedProductCard from '@/components/product/RelatedProductCard';
 import Container from '@/components/shared/Container';
 import { AppDispatch, RootState } from '@/store/store';
@@ -12,8 +12,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const ProductPage = () => {
   const { productId } = useParams();
-  const { product, isLoading, isError } = useSelector(
-    (state: RootState) => state.product,
+  const { relatedProducts, product, isLoading, isError } = useSelector(
+    (state: RootState) => state.relatedProduct,
   );
   const [selectedVarient, setSelectedVarient] = useState(0);
   const [quantity, setQuantity] = useState(0);
@@ -40,7 +40,7 @@ const ProductPage = () => {
     quantity: 1,
   };
   useEffect(() => {
-    if (productId) dispatch(fetchProductById(productId));
+    if (productId) dispatch(getRelatedProduct(productId.toString()));
   }, [dispatch, productId]);
 
   return (
@@ -55,31 +55,29 @@ const ProductPage = () => {
             <div className='flex flex-col gap-10 p-2 md:flex-row'>
               <div className='w-full md:w-1/2'>
                 <Image
-                  src={product?.product?.photo}
-                  alt={product?.product?.name}
+                  src={product?.photo || ''}
+                  alt={product?.name || 'Photo of the product'}
                   width={500}
                   height={500}
                   className='w-full rounded-lg'
                 />
               </div>
               <div className='w-full space-y-4 md:w-1/2'>
-                <p className='text-2xl font-bold'>{product?.product?.name}</p>
-                <p className='text-lg'>{product?.product?.description}</p>
+                <p className='text-2xl font-bold'>{product?.name}</p>
+                <p className='text-lg'>{product?.description}</p>
                 <p className='text-lg'>
-                  <b>Category:</b> {product?.product?.category}
+                  <b>Category:</b> {product?.category}
                 </p>
                 <p className='text-lg'>
-                  <b>Quantity:</b> {product?.product?.quantity} left in stock
+                  <b>Quantity:</b> {product?.quantity} left in stock
                 </p>
                 <p className='text-lg text-red-600'>
                   🔥{' '}
-                  <span className='line-through'>
-                    {product?.product?.discount}% OFF
-                  </span>
+                  <span className='line-through'>{product?.discount}% OFF</span>
                 </p>
                 <div className='flex-grow'>
                   <p className='text-lg font-bold'>Varients</p>
-                  {product?.product?.variants?.map((variant, idx) => (
+                  {product?.variants?.map((variant, idx) => (
                     <div
                       key={variant._id}
                       onClick={() => setSelectedVarient(idx)}
@@ -140,7 +138,7 @@ const ProductPage = () => {
             <div className='my-10'>
               <h2 className='text-xl font-medium'>Related Products</h2>
               <div className='mt-5 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-                {product?.relatedProduct?.map((relatedProduct) => (
+                {relatedProducts?.map((relatedProduct) => (
                   <RelatedProductCard
                     key={relatedProduct._id}
                     product={relatedProduct}
