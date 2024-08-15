@@ -5,6 +5,7 @@ import { AppDispatch, RootState } from '@/store/store';
 import { ProductCardProps } from '@/types/product';
 import axios from '@/utils/axios';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import React, { useState } from 'react';
 import { TbCurrencyTaka } from 'react-icons/tb';
@@ -104,12 +105,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               </div>
             ))}
           </div>
-          <button
-            onClick={() => setIsVarientOpen(!isVarientOpen)}
-            className='mt-4 block w-full bg-neutral-200 px-3 py-2 text-black'
+          <Link
+            href={`/product/${product._id}`}
+            className='mt-4 block w-full bg-neutral-200 px-3 py-2 text-center text-black'
           >
             View Details
-          </button>
+          </Link>
           <button
             onClick={handleAddToCart}
             className='atc-button mt-2 block w-full rounded-b-lg rounded-t-none'

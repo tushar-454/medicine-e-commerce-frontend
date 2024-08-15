@@ -28,3 +28,15 @@ export const fetchAdminProduct = createAsyncThunk(
     }
   },
 );
+
+export const fetchProductById = createAsyncThunk(
+  'product/fetchProductById',
+  async (id: string) => {
+    try {
+      const res = await axios.get(`/product/${id}`);
+      return res.data;
+    } catch (error) {
+      throw new Error();
+    }
+  },
+);
